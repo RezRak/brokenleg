@@ -68,7 +68,7 @@ int main()
     bn::regular_bg_ptr bg = bn::regular_bg_items::bg.create_bg(0, 0);
 
     // Create paddle sprite
-    bn::sprite_ptr paddle = bn::sprite_items::paddle.create_sprite(0, 30); // Paddle at bottom
+    bn::sprite_ptr paddle = bn::sprite_items::paddle.create_sprite(-100, 0); // Paddle at bottom
     //paddle.set_scale(1.5); // Enlarge paddle
     paddle.set_z_order(1); // Ensure paddle is on top layer
 
@@ -91,14 +91,13 @@ int main()
 
     while (true)
     {
-        // Paddle movement
-        if (bn::keypad::left_held() && paddle.x() > -100)
+        if (bn::keypad::up_held() && paddle.y() > -58)
         {
-            paddle.set_x(paddle.x() - 2); // Move left
+            paddle.set_y(paddle.y() - 1);
         }
-        else if (bn::keypad::right_held() && paddle.x() < 100)
+        else if (bn::keypad::down_held() && paddle.y() < 58)
         {
-            paddle.set_x(paddle.x() + 2); // Move right
+            paddle.set_y(paddle.y() + 1);
         }
 
         // Start ball movement
